@@ -1,16 +1,15 @@
 # frontend/Dockerfile
-FROM node:18
+FROM node:lts-alpine
 
 WORKDIR /app
 
+# Copy package files first (for Docker cache efficiency)
+COPY package*.json ./
+RUN npm install --include=dev
+
 COPY . .
 
-# Ensure devDependencies are installed, including Vite
-RUN npm install
-RUN npm install -g vite
+EXPOSE 5173
 
-# Optional safety: ensure vite is available directly
-RUN npx vite --version
-
-# Start dev server
+# Start dev server using the script (resolves ESM issues)
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
