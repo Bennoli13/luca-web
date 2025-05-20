@@ -88,11 +88,10 @@
     }
     
   .member-card ul {
-    padding-left: 1.2rem;
     text-align: left;
     margin-top: 0.5rem;
+    font-size: small;
     }
-  
   .about-content-row {
     display: flex;
     gap: 2rem;
